@@ -19,9 +19,13 @@ int switch1 = 0;
 int switch2 = 0;
 int state = 0;
 
+//Set spinning speed
+int clockSpeed = 1000;
+int counterSpeed = -1000;
+
 void setup() {
   // Set the maximum steps per second:
-  stepper.setMaxSpeed(1000);
+  stepper.setMaxSpeed(2500);
 
   // Pin Mode
   pinMode(inPin1, INPUT);
@@ -36,12 +40,12 @@ void loop() {
   if (switch1 == HIGH) {
 //    Serial.println("Spin Motor Clockwise");
     // Set the speed of the motor in steps per second:
-    stepper.setSpeed(500);
+    stepper.setSpeed(clockSpeed);
   } 
   else if (switch2 == HIGH) {
 //    Serial.println("Spin Motor Counter Clockwise");
     // Set the speed of the motor in steps per second:
-    stepper.setSpeed(-500);
+    stepper.setSpeed(counterSpeed);
   }
   else {
 //    Serial.println("Stop Spinning motor");
