@@ -50,7 +50,9 @@ void loop() {
   } 
   else if (state == 1) { //Motor follows pot
     stepper.setSpeed(clockSpeed);
-    stepper.moveTo(val);
+    stepper.moveTo(200);
+    stepper.runSpeedToPosition();
+    stepper.moveTo(-200);
     stepper.runSpeedToPosition();
   }
   else if (state == 2) { //Motor turns at constant speed

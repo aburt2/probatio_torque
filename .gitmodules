@@ -1,0 +1,3 @@
+[submodule "firmware/TorqueTuner-ESP32"]
+	path = firmware/TorqueTuner-ESP32
+	url = https://github.com/aburt2/TorqueTuner-ESP32.git
