@@ -2,16 +2,17 @@
 // Include the AccelStepper library:
 #include <AccelStepper.h>
 // Motor pin definitions:
-#define motorPin1  8      // IN1 on the ULN2003 driver
-#define motorPin2  9      // IN2 on the ULN2003 driver
-#define motorPin3  10     // IN3 on the ULN2003 driver
-#define motorPin4  11     // IN4 on the ULN2003 driver
+#define motorPin1  11      // IN1 on the ULN2003 driver
+#define motorPin2  10      // IN2 on the ULN2003 driver
+#define motorPin3  9     // IN3 on the ULN2003 driver
+#define motorPin4  8     // IN4 on the ULN2003 driver
 // Define the AccelStepper interface type; 4 wire motor in half step mode:
-#define MotorInterfaceType 8
+#define MotorInterfaceType 4
 // Initialize with pin sequence IN1-IN3-IN2-IN4 for using the AccelStepper library with 28BYJ-48 stepper motor:
 AccelStepper stepper = AccelStepper(MotorInterfaceType, motorPin1, motorPin3, motorPin2, motorPin4);
 
 // Define Pins
+int analogPin = 1;
 int interruptPin = 2;
 int val = 0;     // variable to store the read value
 int switch1 = 0;
@@ -19,48 +20,79 @@ int state = 0;
 
 //Set spinning speed
 int clockSpeed = 1000;
-int counterSpeed = -1000;
+
+// use 2ms debounce time
+#define DEBOUNCE_TICKS (word)microsecondsToClockCycles(15)
+
+extern volatile unsigned long timer0_overflow_count;
+word keytick;  // record time of keypress
 
 void setup() {
   // Set the maximum steps per second:
-  stepper.setMaxSpeed(2500);
+  stepper.setMaxSpeed(1000);
 
   // Pin Mode
-  pinMode(inPin1, INPUT);
-  attachInterrupt(digitalPinToInterrupt(interruptPin), ISR, RISING);
+  attachInterrupt(digitalPinToInterrupt(interruptPin),KeyPress, FALLING);
 
   // Set up Serial
-  Serial.begin(9600);
+  Serial.begin(115200);
 }
+
 void loop() {
-  if (state = 0) {
-//    Serial.println("Spin Motor Clockwise");
-    // Set the speed of the motor in steps per second:
-    stepper.setSpeed(clockSpeed);
-  } 
-  else if (state = 1) {
-//    Serial.println("Spin Motor Counter Clockwise");
-    // Set the speed of the motor in steps per second:
-    stepper.setSpeed(counterSpeed);
+  val = analogRead(analogPin);
+  //Debounce check
+  if (KeyCheck()) {
+    state = CHANGE_STATE(state);
   }
-  else if (state = 2) {
-//    Serial.println("Stop Spinning motor");
+  if (state == 0) { //Motor stops
     stepper.setSpeed(0);
+    stepper.runSpeed();
+  } 
+  else if (state == 1) { //Motor follows pot
+    stepper.setSpeed(clockSpeed);
+    stepper.moveTo(val);
+    stepper.runSpeedToPosition();
   }
-
-  // Step the motor with constant speed as set by setSpeed():
-  stepper.runSpeed();
+  else if (state == 2) { //Motor turns at constant speed
+    stepper.setSpeed(clockSpeed);
+    stepper.runSpeed();
+  }
 }
 
-void ISR() {
-  switch (state) { 
-    case 0:
-      state = 1;
-    case 1:
-      state = 2:
-    case 2:
-      state = 0;
-    default:
-      state = 2;
+int CHANGE_STATE(int cur_state) {
+  int new_state = 0;
+  Serial.print("Current State: ");
+  Serial.println(cur_state);
+  if (cur_state == 0) {
+    new_state = 1;
+  } 
+  else if (cur_state == 1) {
+    new_state = 2;
   }
+  else if (cur_state == 2) {
+    new_state = 0;
+  }
+  else {
+    state = 0;
+  }
+  
+  
+  Serial.print("New State: ");
+  Serial.println(new_state);
+  return new_state;
+}
+
+void KeyPress() {
+  keytick=(word)timer0_overflow_count;
+}
+
+// returns true if key pressed
+boolean KeyCheck() {
+  if (keytick!=0) {
+    if (((word)timer0_overflow_count-keytick)>DEBOUNCE_TICKS) {
+      keytick=0;
+      return true;
+    }
+  }
+  return false;
 }
