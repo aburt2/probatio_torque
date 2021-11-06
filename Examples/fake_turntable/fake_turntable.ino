@@ -7,7 +7,7 @@
 #define motorPin3  10     // IN3 on the ULN2003 driver
 #define motorPin4  11     // IN4 on the ULN2003 driver
 // Define the AccelStepper interface type; 4 wire motor in half step mode:
-#define MotorInterfaceType 4
+#define MotorInterfaceType 8
 // Initialize with pin sequence IN1-IN3-IN2-IN4 for using the AccelStepper library with 28BYJ-48 stepper motor:
 AccelStepper stepper = AccelStepper(MotorInterfaceType, motorPin1, motorPin3, motorPin2, motorPin4);
 
@@ -50,11 +50,11 @@ void loop() {
     stepper.runSpeed();
   } 
   else if (state == 1) { //Motor follows pot
-    stepper.setSpeed(10);
-    stepper.runSpeed();
-    pos = stepper.currentPosition();
-    Serial.print("Current Position: ");
-    Serial.println(pos);
+    Serial.print("Target Position: ");
+    Serial.println(val);
+    stepper.moveTo(val);
+    stepper.setSpeed(clockSpeed);
+    stepper.runSpeedToPosition();
   }
   else if (state == 2) { //Motor turns at constant speed
     stepper.setSpeed(clockSpeed);
