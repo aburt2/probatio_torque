@@ -7,51 +7,16 @@
 #define motorPin3  10     // IN3 on the ULN2003 driver
 #define motorPin4  11     // IN4 on the ULN2003 driver
 // Define the AccelStepper interface type; 4 wire motor in half step mode:
-#define MotorInterfaceType 8
+#define MotorInterfaceType 4
 // Initialize with pin sequence IN1-IN3-IN2-IN4 for using the AccelStepper library with 28BYJ-48 stepper motor:
 AccelStepper stepper = AccelStepper(MotorInterfaceType, motorPin1, motorPin3, motorPin2, motorPin4);
-
-// Define Pins
-int inPin1 = 2;
-int inPin2 = 4;
-int val = 0;     // variable to store the read value
-int switch1 = 0;
-int switch2 = 0;
-int state = 0;
-
-//Set spinning speed
-int clockSpeed = 1000;
-int counterSpeed = -1000;
-
 void setup() {
   // Set the maximum steps per second:
-  stepper.setMaxSpeed(2500);
-
-  // Pin Mode
-  pinMode(inPin1, INPUT);
-  pinMode(inPin2, INPUT);
-
-  // Set up Serial
-  Serial.begin(9600);
+  stepper.setMaxSpeed(1000);
 }
 void loop() {
-  switch1 = digitalRead(inPin1);
-  switch2 = digitalRead(inPin2);
-  if (switch1 == HIGH) {
-//    Serial.println("Spin Motor Clockwise");
-    // Set the speed of the motor in steps per second:
-    stepper.setSpeed(clockSpeed);
-  } 
-  else if (switch2 == HIGH) {
-//    Serial.println("Spin Motor Counter Clockwise");
-    // Set the speed of the motor in steps per second:
-    stepper.setSpeed(counterSpeed);
-  }
-  else {
-//    Serial.println("Stop Spinning motor");
-    stepper.setSpeed(0);
-  }
-
+  // Set the speed of the motor in steps per second:
+  stepper.setSpeed(500);
   // Step the motor with constant speed as set by setSpeed():
   stepper.runSpeed();
 }
