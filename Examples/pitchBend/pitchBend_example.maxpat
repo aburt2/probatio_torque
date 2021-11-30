@@ -40,6 +40,18 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-2",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "int" ],
+					"patching_rect" : [ 521.0, 588.0, 50.0, 22.0 ],
+					"text" : "midiin a"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-61",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
@@ -338,6 +350,13 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-17", 0 ],
+					"source" : [ "obj-2", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-23", 0 ],
 					"source" : [ "obj-22", 0 ]
 				}
@@ -418,7 +437,7 @@
  ],
 		"dependency_cache" : [ 			{
 				"name" : "readData.maxpat",
-				"bootpath" : "~/Documents/probatio_torque/Examples/pitchBend",
+				"bootpath" : "D:/Documents/probatio_torque/Examples/pitchBend",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
