@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 35.0, 85.0, 890.0, 905.0 ],
+		"rect" : [ 42.0, 85.0, 890.0, 905.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -47,7 +47,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "bang" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 314.0, 515.0, 50.0, 22.0 ]
+					"patching_rect" : [ 257.0, 419.0, 50.0, 22.0 ]
 				}
 
 			}
@@ -58,7 +58,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "float" ],
-					"patching_rect" : [ 137.0, 377.0, 45.0, 22.0 ],
+					"patching_rect" : [ 80.0, 281.0, 45.0, 22.0 ],
 					"text" : "/ 1000."
 				}
 
@@ -70,7 +70,7 @@
 					"numinlets" : 3,
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "" ],
-					"patching_rect" : [ 78.0, 333.0, 56.0, 22.0 ],
+					"patching_rect" : [ 20.0, 243.0, 56.0, 22.0 ],
 					"text" : "route 1 2"
 				}
 
@@ -82,7 +82,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 755.5, 193.0, 58.0, 22.0 ],
+					"patching_rect" : [ 169.0, 272.0, 58.0, 22.0 ],
 					"text" : "loadbang"
 				}
 
@@ -94,7 +94,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 740.5, 244.0, 41.0, 22.0 ],
+					"patching_rect" : [ 154.0, 323.0, 41.0, 22.0 ],
 					"text" : "loop 1"
 				}
 
@@ -109,8 +109,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 151.5, 648.0, 63.528900146484375, 40.0 ],
-					"presentation_linecount" : 2,
+					"patching_rect" : [ 94.5, 552.0, 63.528900146484375, 40.0 ],
 					"text" : "start audio"
 				}
 
@@ -126,7 +125,7 @@
 					"orientation" : 1,
 					"outlettype" : [ "signal", "", "float", "list" ],
 					"parameter_enable" : 1,
-					"patching_rect" : [ 101.5, 596.0, 136.0, 30.0 ],
+					"patching_rect" : [ 44.5, 500.0, 136.0, 30.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_initial" : [ -40 ],
@@ -153,7 +152,7 @@
 					"maxclass" : "ezdac~",
 					"numinlets" : 2,
 					"numoutlets" : 0,
-					"patching_rect" : [ 101.5, 644.0, 44.0, 44.0 ],
+					"patching_rect" : [ 44.5, 548.0, 44.0, 44.0 ],
 					"prototypename" : "helpfile"
 				}
 
@@ -165,7 +164,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 73.0, 248.0, 176.0, 22.0 ],
+					"patching_rect" : [ 19.0, 200.0, 176.0, 22.0 ],
 					"text" : "if $i1 > 3000 then 1 1 else 2 $i1"
 				}
 
@@ -177,7 +176,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 117.0, 462.0, 31.0, 22.0 ],
+					"patching_rect" : [ 60.0, 366.0, 31.0, 22.0 ],
 					"text" : "sig~"
 				}
 
@@ -189,7 +188,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "float", "bang" ],
-					"patching_rect" : [ 496.0, 266.0, 195.0, 22.0 ],
+					"patching_rect" : [ 562.0, 163.0, 195.0, 22.0 ],
 					"text" : "buffer~ sample music_sample.mp3"
 				}
 
@@ -201,7 +200,7 @@
 					"numinlets" : 3,
 					"numoutlets" : 2,
 					"outlettype" : [ "signal", "signal" ],
-					"patching_rect" : [ 91.0, 514.0, 94.0, 22.0 ],
+					"patching_rect" : [ 34.0, 418.0, 94.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"basictuning" : 440,
 						"followglobaltempo" : 0,
@@ -209,7 +208,7 @@
 						"loopend" : [ 0.0, "ms" ],
 						"loopstart" : [ 0.0, "ms" ],
 						"mode" : "basic",
-						"originallength" : [ 0.0, "ticks" ],
+						"originallength" : [ 92084.15341506243567, "ticks" ],
 						"originaltempo" : 120.000000000000014,
 						"phase" : [ 0.0, "ticks" ],
 						"pitchcorrection" : 0,
@@ -506,7 +505,7 @@
 ,
 		"dependency_cache" : [ 			{
 				"name" : "readData.maxpat",
-				"bootpath" : "~/Documents/probatio_torque/Examples/turntable_example",
+				"bootpath" : "D:/Documents/probatio_torque/Examples/turntable_example",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
